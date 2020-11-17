@@ -32,7 +32,7 @@
   <groupId>org.apache.tomee.jakarta</groupId>
   <artifactId>apache-tomee</artifactId>
   <packaging>jar</packaging>
-  <version>9.0.0-M3-SNAPSHOT</version>
+  <version>9.0.0-M3</version>
 
   <name>TomEE :: TomEE :: Apache TomEE 9</name>
   <description>Jakarta EE 9 version of Apache TomEE</description>
@@ -47,7 +47,7 @@
     <connection>scm:git:git@github.com:apache/tomee-jakarta.git</connection>
     <url>scm:git:git@github.com:apache/tomee-jakarta.git</url>
     <developerConnection>scm:git:git@github.com:apache/tomee-jakarta.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>tomee-9.0.0-M3</tag>
   </scm>
 
   <issueManagement>
