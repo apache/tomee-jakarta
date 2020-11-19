@@ -353,7 +353,7 @@
       <plugin>
         <groupId>org.tomitribe.transformer</groupId>
         <artifactId>org.eclipse.transformer.maven</artifactId>
-        <version>0.1.1a</version>
+        <version>0.3.0-SNAPSHOT</version>
         <executions>
           <execution>
             <goals>
@@ -382,4 +382,3 @@
     </plugins>
   </build>
 </project>
-
