@@ -352,7 +352,7 @@
       </plugin>
       <plugin>
         <groupId>org.eclipse.transformer</groupId>
-        <artifactId>org.eclipse.transformer</artifactId>
+        <artifactId>org.eclipse.transformer.maven</artifactId>
         <version>0.2.0</version>
         <executions>
           <execution>
@@ -363,8 +363,15 @@
           </execution>
         </executions>
         <configuration>
-          <direct>${project.basedir}/src/main/resources/org/eclipse/transformer/jakarta/jakarta-direct.properties</direct>
+          <rulesDirectUri>/org/tomitribe/transformer/jakarta/jakarta-direct.properties</rulesDirectUri>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>${project.artifactId}</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.tomee.patch</groupId>
@@ -384,4 +391,14 @@
       </plugin>
     </plugins>
   </build>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
 </project>
