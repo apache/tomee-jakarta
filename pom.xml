@@ -88,6 +88,9 @@
     <plus.work-dir>${project.build.directory}/plus-work-dir</plus.work-dir>
     <plume.work-dir>${project.build.directory}/plume-work-dir</plume.work-dir>
     <microprofile.work-dir>${project.build.directory}/microprofile-work-dir</microprofile.work-dir>
+
+    <mojarra.version>3.0.0</mojarra.version>
+    <version.eclipselink>3.0.0</version.eclipselink>
   </properties>
 
   <dependencies>
@@ -144,6 +147,37 @@
         <exclusion>
           <groupId>*</groupId>
           <artifactId>*</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>jakarta.faces</artifactId>
+      <version>${mojarra.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>eclipselink</artifactId>
+      <version>${version.eclipselink}</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>javax.persistence</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.persistence</groupId>
+          <artifactId>jakarta.persistence</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.glassfish</groupId>
+          <artifactId>javax.json</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -324,7 +358,7 @@
               <goal>attach-artifact</goal>
             </goals>
             <configuration>
-              <artifacts>
+            <artifacts>
                 <artifact>
                   <file>${project.build.directory}/apache-tomee-webprofile-${project.version}.zip</file>
                   <type>zip</type>

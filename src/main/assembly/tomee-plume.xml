@@ -32,7 +32,19 @@
       <includes>
         <include>**/*</include>
       </includes>
+      <excludes>
+        <exclude>%regex[lib/jakarta.faces(-api|-impl)?-.*.jar]</exclude>
+        <exclude>%regex[lib/eclipselink(-api|-impl)?-.*.jar]</exclude>
+      </excludes>
     </fileSet>
   </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>/apache-tomee-plume-${project.version}/lib</outputDirectory>
+      <scope>runtime</scope>
+      <useTransitiveDependencies>true</useTransitiveDependencies>
+      <useTransitiveFiltering>true</useTransitiveFiltering>
+    </dependencySet>
+  </dependencySets>
 </assembly>
 
