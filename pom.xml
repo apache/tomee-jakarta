@@ -32,7 +32,7 @@
   <groupId>org.apache.tomee.jakarta</groupId>
   <artifactId>apache-tomee</artifactId>
   <packaging>jar</packaging>
-  <version>9.0.0-M4-SNAPSHOT</version>
+  <version>9.0.0-M5-SNAPSHOT</version>
 
   <name>TomEE :: TomEE :: Apache TomEE 9</name>
   <description>Jakarta EE 9 version of Apache TomEE</description>
@@ -82,7 +82,7 @@
 
 
   <properties>
-    <tomee.version>8.0.6-SNAPSHOT</tomee.version>
+    <tomee.version>8.0.7-SNAPSHOT</tomee.version>
     <tomee.build.name>${project.groupId}.tomee.tomee</tomee.build.name>
     <webprofile.work-dir>${project.build.directory}/webprofile-work-dir</webprofile.work-dir>
     <plus.work-dir>${project.build.directory}/plus-work-dir</plus.work-dir>
@@ -151,12 +151,12 @@
       </exclusions>
     </dependency>
 
-    <dependency>
+    <!--dependency>
       <groupId>org.glassfish</groupId>
       <artifactId>jakarta.faces</artifactId>
       <version>${mojarra.version}</version>
       <scope>runtime</scope>
-    </dependency>
+    </dependency-->
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>eclipselink</artifactId>
@@ -201,44 +201,6 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>unpack-webprofile</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.tomee</groupId>
-                  <artifactId>apache-tomee</artifactId>
-                  <version>${tomee.version}</version>
-                  <classifier>webprofile</classifier>
-                  <type>zip</type>
-                  <outputDirectory>${webprofile.work-dir}</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-microprofile</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.tomee</groupId>
-                  <artifactId>apache-tomee</artifactId>
-                  <version>${tomee.version}</version>
-                  <classifier>microprofile</classifier>
-                  <type>zip</type>
-                  <outputDirectory>${microprofile.work-dir}</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
             <id>unpack-plume</id>
             <phase>process-resources</phase>
             <goals>
@@ -257,25 +219,6 @@
               </artifactItems>
             </configuration>
           </execution>
-          <execution>
-            <id>unpack-plus</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.tomee</groupId>
-                  <artifactId>apache-tomee</artifactId>
-                  <version>${tomee.version}</version>
-                  <classifier>plus</classifier>
-                  <type>zip</type>
-                  <outputDirectory>${plus.work-dir}</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
         </executions>
       </plugin>
 
@@ -284,36 +227,6 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
-          <execution>
-            <id>webprofile</id>
-            <phase>package</phase>
-            <configuration>
-              <descriptors>
-                <descriptor>src/main/assembly/tomee-webprofile.xml</descriptor>
-              </descriptors>
-              <attach>false</attach>
-              <appendAssemblyId>false</appendAssemblyId>
-              <finalName>apache-tomee-webprofile-${project.version}</finalName>
-            </configuration>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>plus</id>
-            <phase>package</phase>
-            <configuration>
-              <descriptors>
-                <descriptor>src/main/assembly/tomee-plus.xml</descriptor>
-              </descriptors>
-              <attach>false</attach>
-              <appendAssemblyId>false</appendAssemblyId>
-              <finalName>apache-tomee-plus-${project.version}</finalName>
-            </configuration>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
           <execution>
             <id>plume</id>
             <phase>package</phase>
@@ -324,21 +237,6 @@
               <attach>false</attach>
               <appendAssemblyId>false</appendAssemblyId>
               <finalName>apache-tomee-plume-${project.version}</finalName>
-            </configuration>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>microprofile</id>
-            <phase>package</phase>
-            <configuration>
-              <descriptors>
-                <descriptor>src/main/assembly/tomee-microprofile.xml</descriptor>
-              </descriptors>
-              <attach>false</attach>
-              <appendAssemblyId>false</appendAssemblyId>
-              <finalName>apache-tomee-microprofile-${project.version}</finalName>
             </configuration>
             <goals>
               <goal>single</goal>
@@ -360,24 +258,9 @@
             <configuration>
             <artifacts>
                 <artifact>
-                  <file>${project.build.directory}/apache-tomee-webprofile-${project.version}.zip</file>
-                  <type>zip</type>
-                  <classifier>webprofile</classifier>
-                </artifact>
-                <artifact>
-                  <file>${project.build.directory}/apache-tomee-plus-${project.version}.zip</file>
-                  <type>zip</type>
-                  <classifier>plus</classifier>
-                </artifact>
-                <artifact>
                   <file>${project.build.directory}/apache-tomee-plume-${project.version}.zip</file>
                   <type>zip</type>
                   <classifier>plume</classifier>
-                </artifact>
-                <artifact>
-                  <file>${project.build.directory}/apache-tomee-microprofile-${project.version}.zip</file>
-                  <type>zip</type>
-                  <classifier>microprofile</classifier>
                 </artifact>
               </artifacts>
             </configuration>

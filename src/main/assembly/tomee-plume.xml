@@ -33,8 +33,8 @@
         <include>**/*</include>
       </includes>
       <excludes>
-        <exclude>%regex[lib/jakarta.faces(-api|-impl)?-.*.jar]</exclude>
-        <exclude>%regex[lib/eclipselink(-api|-impl)?-.*.jar]</exclude>
+        <!--exclude>%regex[lib/jakarta.faces-.*.jar]</exclude>-->
+        <exclude>%regex[lib/eclipselink-.*.jar]</exclude>
       </excludes>
     </fileSet>
   </fileSets>
