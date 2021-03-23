@@ -27,9 +27,9 @@
     <version>9.0.0-M7-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>tomee-webapp</artifactId>
+  <artifactId>tomee-webprofile-webapp</artifactId>
   <packaging>jar</packaging>
-  <name>TomEE :: TomEE :: Webapp</name>
+  <name>TomEE :: TomEE :: WebProfile Webapp</name>
   <properties>
     <tomee.build.name>${project.groupId}.tomee.webapp</tomee.build.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -117,7 +117,45 @@
           </sourceFolders>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.eclipse.transformer</groupId>
+        <artifactId>org.eclipse.transformer.maven</artifactId>
+        <version>0.2.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <overwrite>true</overwrite>
+<!--          <rulesDirectUri>/org/tomitribe/transformer/jakarta/jakarta-direct.properties</rulesDirectUri>-->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.tomee.patch</groupId>
+        <artifactId>tomee-patch-plugin</artifactId>
+        <version>0.4-SNAPSHOT</version>
+        <configuration>
+          <select>tomee-webprofile-webapp-transformed-.*\.war</select>
+          <patchSources>
+            <source>${project.basedir}/../../src/patch/java/</source>
+          </patchSources>
+          <sourceExcludes>
+            <exclude>org/apache/cxf</exclude>
+          </sourceExcludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
   <dependencies>
