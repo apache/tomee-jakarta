@@ -93,21 +93,32 @@
     <dependency> <!-- to be sure to have it -->
       <groupId>${project.groupId}</groupId>
       <artifactId>tomee-plus-webapp</artifactId>
-      <version>${tomee.version}</version>
+      <version>${project.version}</version>
+      <classifier>transformed</classifier>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
     <dependency> <!-- to be sure to have it -->
       <groupId>${project.groupId}</groupId>
       <artifactId>tomee-plume-webapp</artifactId>
-      <version>${tomee.version}</version>
+      <version>${project.version}</version>
+      <classifier>transformed</classifier>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
     <dependency> <!-- to be sure to have it -->
       <groupId>${project.groupId}</groupId>
       <artifactId>tomee-microprofile-webapp</artifactId>
-      <version>${tomee.version}</version>
+      <version>${project.version}</version>
+      <classifier>transformed</classifier>
+      <type>war</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency> <!-- to be sure to have it -->
+      <groupId>${project.groupId}</groupId>
+      <artifactId>tomee-webprofile-webapp</artifactId>
+      <version>${project.version}</version>
+      <classifier>transformed</classifier>
       <type>war</type>
       <scope>provided</scope>
     </dependency>
@@ -324,7 +335,8 @@
             <configuration>
               <properties>
                 <tomee.workdir>${webprofile.work-dir}</tomee.workdir>
-                <tomee.webapp>tomee-webapp</tomee.webapp>
+                <tomee.webapp>tomee-webprofile-webapp</tomee.webapp>
+                <tomee.version>${project.version}</tomee.version>
               </properties>
               <source>
                 new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
@@ -341,6 +353,7 @@
               <properties>
                 <tomee.workdir>${plus.work-dir}</tomee.workdir>
                 <tomee.webapp>tomee-plus-webapp</tomee.webapp>
+                <tomee.version>${project.version}</tomee.version>
               </properties>
               <source>
                 new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
@@ -357,6 +370,7 @@
               <properties>
                 <tomee.workdir>${plume.work-dir}</tomee.workdir>
                 <tomee.webapp>tomee-plume-webapp</tomee.webapp>
+                <tomee.version>${project.version}</tomee.version>
               </properties>
               <source>
                 new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
@@ -373,6 +387,7 @@
               <properties>
                 <tomee.workdir>${microprofile.work-dir}</tomee.workdir>
                 <tomee.webapp>tomee-microprofile-webapp</tomee.webapp>
+                <tomee.version>${project.version}</tomee.version>
               </properties>
               <source>
                 new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
