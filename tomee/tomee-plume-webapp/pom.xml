@@ -191,6 +191,12 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <plugins>
       <!-- Looks like the war still have myfaces because of the overlay with tomee-webapp -->
       <plugin>
@@ -226,6 +232,27 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <tstamp>
+                  <format property="TSTAMP" pattern="hh:mm" />
+                </tstamp>
+                <replace file="target/classes/openejb-version.properties" token="@DATE-REPLACED-BY-MAVEN@" value="${DSTAMP}" />
+                <replace file="target/classes/openejb-version.properties" token="@TIME-REPLACED-BY-MAVEN@" value="${TSTAMP}" />
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.eclipse.transformer</groupId>
         <artifactId>org.eclipse.transformer.maven</artifactId>
         <version>0.2.0</version>
@@ -252,6 +279,9 @@
             <source>${project.basedir}/../../src/patch/java/</source>
             <source>${project.basedir}/src/patch/java/</source>
           </patchSources>
+          <replacements>
+            <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
+          </replacements>
         </configuration>
         <executions>
           <execution>
