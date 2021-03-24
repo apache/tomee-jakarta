@@ -131,6 +131,7 @@
   <modules>
     <module>boms</module>
     <module>tomee</module>
+    <module>transform</module>
   </modules>
 
   <dependencyManagement>

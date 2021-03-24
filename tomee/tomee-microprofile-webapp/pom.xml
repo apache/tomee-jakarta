@@ -207,8 +207,15 @@
         </executions>
         <configuration>
           <overwrite>true</overwrite>
-<!--          <rulesDirectUri>/org/tomitribe/transformer/jakarta/jakarta-direct.properties</rulesDirectUri>-->
+          <rulesDirectUri>/org/tomitribe/transformer/jakarta/jakarta-direct.properties</rulesDirectUri>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>transform</artifactId>
+            <version>${project.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.tomee.patch</groupId>
@@ -217,7 +224,7 @@
         <configuration>
           <select>tomee-microprofile-webapp-transformed-.*\.war</select>
           <patchSources>
-            <source>${project.basedir}/../../src/patch/java/</source>
+            <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
           <replacements>
             <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
