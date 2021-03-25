@@ -284,7 +284,6 @@
           <select>tomee-plume-webapp-transformed-.*\.war</select>
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
-            <source>${project.basedir}/src/patch/java/</source>
           </patchSources>
           <replacements>
             <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
