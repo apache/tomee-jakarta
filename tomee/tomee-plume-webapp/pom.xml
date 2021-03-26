@@ -187,7 +187,11 @@
         </exclusion>
       </exclusions>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -243,10 +247,10 @@
             <configuration>
               <target>
                 <tstamp>
-                  <format property="TSTAMP" pattern="hh:mm" />
+                  <format property="TSTAMP" pattern="hh:mm"/>
                 </tstamp>
-                <replace file="target/classes/openejb-version.properties" token="@DATE-REPLACED-BY-MAVEN@" value="${DSTAMP}" />
-                <replace file="target/classes/openejb-version.properties" token="@TIME-REPLACED-BY-MAVEN@" value="${TSTAMP}" />
+                <replace file="target/classes/openejb-version.properties" token="@DATE-REPLACED-BY-MAVEN@" value="${DSTAMP}"/>
+                <replace file="target/classes/openejb-version.properties" token="@TIME-REPLACED-BY-MAVEN@" value="${TSTAMP}"/>
               </target>
             </configuration>
           </execution>
@@ -284,10 +288,19 @@
           <select>tomee-plume-webapp-transformed-.*\.war</select>
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
+            <source>${project.basedir}/src/patch/java/</source>
           </patchSources>
-          <replacements>
-            <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
-          </replacements>
+          <replace>
+            <!-- We don't want these bytecode modified at all, so we overwrite
+            any modifications made by the Eclipse Transformer with the originals -->
+            <jars>
+              <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
+              <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
+            </jars>
+            <resources>
+              <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
+            </resources>
+          </replace>
         </configuration>
         <executions>
           <execution>
