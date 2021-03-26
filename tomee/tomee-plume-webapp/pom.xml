@@ -293,7 +293,7 @@
           <select>tomee-plume-webapp-transformed-.*\.war</select>
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
-            <source>${project.basedir}/src/patch/java/</source>
+<!--            <source>${project.basedir}/src/patch/java/</source>-->
           </patchSources>
           <replace>
             <!-- We don't want these bytecode modified at all, so we overwrite
