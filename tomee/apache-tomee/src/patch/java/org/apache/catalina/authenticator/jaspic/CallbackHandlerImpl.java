@@ -27,9 +27,11 @@ import javax.security.auth.Subject;
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.UnsupportedCallbackException;
-import javax.security.auth.message.callback.CallerPrincipalCallback;
-import javax.security.auth.message.callback.GroupPrincipalCallback;
-import javax.security.auth.message.callback.PasswordValidationCallback;
+
+import jakarta.security.auth.message.callback.CallerPrincipalCallback;
+import jakarta.security.auth.message.callback.GroupPrincipalCallback;
+import jakarta.security.auth.message.callback.PasswordValidationCallback;
+
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -40,18 +42,18 @@ import java.util.List;
 /**
  * This is a clone of Tomcat default callback handler but with a better handling of the Generic Principals when more than
  * one callback is used.
- *
+ * <p>
  * For instance https://github.com/apache/tomcat/blob/master/java/org/apache/catalina/authenticator/jaspic/CallbackHandlerImpl.java#L96
  * keeps adding new Generic Principals even for the same name whereas the authenticator base
  * https://github.com/apache/tomcat/blob/master/java/org/apache/catalina/authenticator/AuthenticatorBase.java#L956
  * randomly picks the first one. So it results in random failures
- *
+ * <p>
  * See https://github.com/eclipse-ee4j/jakartaee-tck/issues/575
  */
 public class CallbackHandlerImpl implements CallbackHandler, Contained {
 
     private static final StringManager sm = StringManager.getManager(
-        org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl.class);
+            org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl.class);
     private final Log log = LogFactory.getLog(org.apache.catalina.authenticator.jaspic.CallbackHandlerImpl.class); // must not be static
 
     private Container container;
@@ -83,11 +85,11 @@ public class CallbackHandlerImpl implements CallbackHandler, Contained {
                         log.warn(sm.getString("callbackHandlerImpl.containerMissing", callback.getClass().getName()));
                     } else if (container.getRealm() == null) {
                         log.warn(sm.getString("callbackHandlerImpl.realmMissing",
-                                              callback.getClass().getName(), container.getName()));
+                                callback.getClass().getName(), container.getName()));
                     } else {
                         PasswordValidationCallback pvc = (PasswordValidationCallback) callback;
                         principal = container.getRealm().authenticate(pvc.getUsername(),
-                                                                      String.valueOf(pvc.getPassword()));
+                                String.valueOf(pvc.getPassword()));
                         subject = pvc.getSubject();
                     }
                 } else {
