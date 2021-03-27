@@ -41,6 +41,7 @@
 
     -->
 
+    <!--
     <dependency>
       <groupId>org.apache.tomee.bom</groupId>
       <artifactId>tomee-plus</artifactId>
@@ -59,6 +60,7 @@
       <version>9.0.0</version>
       <scope>provided</scope>
     </dependency>
+    -->
 
   </dependencies>
 </project>
