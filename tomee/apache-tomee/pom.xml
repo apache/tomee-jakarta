@@ -530,6 +530,14 @@
           <select>apache-tomee-(plus|plume|webprofile|microprofile).*\.zip</select>
           <skipTransform>true</skipTransform>
           <createTarGz>true</createTarGz>
+          <replace>
+            <!-- We don't want these bytecode modified at all, so we overwrite
+            any modifications made by the Eclipse Transformer with the originals -->
+            <jars>
+              <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
+              <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
+            </jars>
+          </replace>
         </configuration>
         <executions>
           <execution>
