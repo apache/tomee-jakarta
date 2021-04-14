@@ -32,17 +32,29 @@
   <packaging>pom</packaging>
   <name>TomEE :: TomEE</name>
 
-  <modules>
-    <module>tomee-webprofile-webapp</module>
-    <module>tomee-microprofile-webapp</module>
-    <module>tomee-plus-webapp</module>
-    <module>tomee-plume-webapp</module>
-    <module>apache-tomee</module>
-  </modules>
-
 
   <!-- just set the good JPA provider. As openejb-core is needed in all modules it is easier to do it here -->
   <profiles>
+    <profile>
+      <id>main</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+        <module>tomee-webprofile-webapp</module>
+        <module>tomee-microprofile-webapp</module>
+        <module>tomee-plus-webapp</module>
+        <module>tomee-plume-webapp</module>
+        <module>apache-tomee</module>
+      </modules>
+    </profile>
+    <profile>
+      <id>plume</id>
+      <modules>
+        <module>tomee-plume-webapp</module>
+        <module>apache-tomee</module>
+      </modules>
+    </profile>
     <profile>
       <id>openjpa</id>
       <activation>
