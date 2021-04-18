@@ -51,7 +51,6 @@
     <profile>
       <id>plume</id>
       <modules>
-        <module>tomee-webprofile-webapp</module>
         <module>tomee-plume-webapp</module>
         <module>apache-tomee</module>
       </modules>
