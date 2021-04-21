@@ -347,6 +347,7 @@
                     <tomee.workdir>${webprofile.work-dir}</tomee.workdir>
                     <tomee.webapp>tomee-webprofile-webapp</tomee.webapp>
                     <tomee.version>${project.version}</tomee.version>
+                    <remove.datestamp>${tomee.version}, ${project.version}, ${cxf.version}</remove.datestamp>
                   </properties>
                   <source>
                     new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
@@ -364,6 +365,7 @@
                     <tomee.workdir>${plus.work-dir}</tomee.workdir>
                     <tomee.webapp>tomee-plus-webapp</tomee.webapp>
                     <tomee.version>${project.version}</tomee.version>
+                    <remove.datestamp>${tomee.version}, ${project.version}, ${cxf.version}</remove.datestamp>
                   </properties>
                   <source>
                     new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
@@ -381,6 +383,7 @@
                     <tomee.workdir>${plume.work-dir}</tomee.workdir>
                     <tomee.webapp>tomee-plume-webapp</tomee.webapp>
                     <tomee.version>${project.version}</tomee.version>
+                    <remove.datestamp>${tomee.version}, ${project.version}, ${cxf.version}</remove.datestamp>
                   </properties>
                   <source>
                     new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
@@ -398,6 +401,7 @@
                     <tomee.workdir>${microprofile.work-dir}</tomee.workdir>
                     <tomee.webapp>tomee-microprofile-webapp</tomee.webapp>
                     <tomee.version>${project.version}</tomee.version>
+                    <remove.datestamp>${tomee.version}, ${project.version}, ${cxf.version}</remove.datestamp>
                   </properties>
                   <source>
                     new commands.SetupCommand(pom: this, log: log, project: project, ant: ant, properties: properties).execute()
