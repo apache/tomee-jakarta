@@ -80,7 +80,7 @@
   </mailingLists>
 
   <properties>
-    <batchee.version>0.5-incubating</batchee.version>
+    <batchee.version>0.6</batchee.version>
     <bval.version>2.0.5</bval.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-cli.version>1.4</commons-cli.version>
