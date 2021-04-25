@@ -470,9 +470,6 @@
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
-          <sourceExcludes>
-            <exclude>org/apache/cxf</exclude>
-          </sourceExcludes>
           <replacements>
             <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
           </replacements>
