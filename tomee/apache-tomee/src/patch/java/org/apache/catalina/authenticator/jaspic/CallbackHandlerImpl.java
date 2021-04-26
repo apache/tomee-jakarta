@@ -119,6 +119,11 @@ public class CallbackHandlerImpl implements CallbackHandler, Contained {
                 }
 
                 subject.getPrivateCredentials().add(new GenericPrincipal(mergeName, null, mergeRoles, mergePrincipal));
+
+                // may come from CallerPrincipalCallback and we need to being to get it from the Subject
+                if (principal != null) {
+                    subject.getPrincipals().add(principal);
+                }
             }
         }
     }
@@ -141,7 +146,7 @@ public class CallbackHandlerImpl implements CallbackHandler, Contained {
             roles = Arrays.asList(groups);
         }
 
-        return new GenericPrincipal(name, null, roles, principal);
+        return new GenericPrincipal(name, roles, principal);
     }
 
     // Contained interface methods
