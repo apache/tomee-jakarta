@@ -154,10 +154,6 @@ public abstract class ProviderFactory {
         new LazyProviderClass(JAXB_PROVIDER_NAME);
     private static final LazyProviderClass JAXB_ELEMENT_PROVIDER_CLASS =
         new LazyProviderClass("org.apache.cxf.jaxrs.provider.JAXBElementTypedProvider");
-    private static final LazyProviderClass JSONB_PROVIDER_CLASS =
-        new LazyProviderClass("org.apache.openejb.server.cxf.rs.johnzon.TomEEJsonbProvider");
-    private static final LazyProviderClass JSONP_PROVIDER_CLASS =
-        new LazyProviderClass("org.apache.openejb.server.cxf.rs.johnzon.TomEEJsonpProvider");
     private static final LazyProviderClass MULTIPART_PROVIDER_CLASS =
         new LazyProviderClass("org.apache.cxf.jaxrs.provider.MultipartProvider");
 
@@ -218,8 +214,6 @@ public abstract class ProviderFactory {
                      new PrimitiveTextProvider<Object>(),
                      JAXB_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
                      JAXB_ELEMENT_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
-                     JSONP_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
-                     JSONB_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
                      MULTIPART_PROVIDER_CLASS.tryCreateInstance(factory.getBus()));
         Object prop = factory.getBus().getProperty("skip.default.json.provider.registration");
         if (!PropertyUtils.isTrue(prop)) {
@@ -896,19 +890,21 @@ public abstract class ProviderFactory {
             MessageBodyWriter<?> e1 = p1.getProvider();
             MessageBodyWriter<?> e2 = p2.getProvider();
 
-            int result = compareClasses(e1, e2);
-            if (result != 0) {
-                return result;
-            }
             List<MediaType> types1 =
                 JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(e1), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
             List<MediaType> types2 =
                 JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(e2), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
 
-            result = JAXRSUtils.compareSortedMediaTypes(types1, types2, JAXRSUtils.MEDIA_TYPE_QS_PARAM);
+            int result = JAXRSUtils.compareSortedMediaTypes(types1, types2, JAXRSUtils.MEDIA_TYPE_QS_PARAM);
             if (result != 0) {
                 return result;
             }
+
+            result = compareClasses(e1, e2);
+            if (result != 0) {
+                return result;
+            }
+
             result = compareCustomStatus(p1, p2);
             if (result != 0) {
                 return result;
