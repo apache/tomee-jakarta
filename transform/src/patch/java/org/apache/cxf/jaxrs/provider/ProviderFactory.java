@@ -735,18 +735,17 @@ public abstract class ProviderFactory {
      * x/y;q=1.0 < x/y;q=0.7.
      */
     private void sortReaders() {
-        if (!customComparatorAvailable(MessageBodyReader.class)) {
-            messageReaders.sort(new MessageBodyReaderComparator());
-        } else {
-            doCustomSort(messageReaders);
-        }
+        messageReaders.sort(MessageBodyReaderComparator::sortPriorityAnnotation);
+        messageReaders.sort(MessageBodyReaderComparator::sortCustomProviders);
+        messageReaders.sort(MessageBodyReaderComparator::sortMediaTypes);
+        messageReaders.sort(MessageBodyReaderComparator::sortClasses);
     }
+    
     private <T> void sortWriters() {
-        if (!customComparatorAvailable(MessageBodyWriter.class)) {
-            messageWriters.sort(new MessageBodyWriterComparator());
-        } else {
-            doCustomSort(messageWriters);
-        }
+        messageWriters.sort(MessageBodyWriterComparator::sortPriorityAnnotation);
+        messageWriters.sort(MessageBodyWriterComparator::sortCustomProviders);
+        messageWriters.sort(MessageBodyWriterComparator::sortProduceTypes);
+        messageWriters.sort(MessageBodyWriterComparator::sortClasses);
     }
 
     private boolean customComparatorAvailable(Class<?> providerClass) {
@@ -859,64 +858,64 @@ public abstract class ProviderFactory {
         setProviders(true, false, userProviders.toArray());
     }
 
-    private static class MessageBodyReaderComparator
-        implements Comparator<ProviderInfo<MessageBodyReader<?>>> {
+    private static class MessageBodyReaderComparator {
 
-        public int compare(ProviderInfo<MessageBodyReader<?>> p1,
-                           ProviderInfo<MessageBodyReader<?>> p2) {
+        public static int sortPriorityAnnotation(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
+            return comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
+        }
+
+        public static int sortCustomProviders(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
+            int result;
+            result = compareCustomStatus(p1, p2);
+            return result;
+        }
+
+        public static int sortClasses(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
             MessageBodyReader<?> e1 = p1.getProvider();
             MessageBodyReader<?> e2 = p2.getProvider();
+            int result;
+            result = compareClasses(e1, e2);
+            return result;
+        }
 
-            List<MediaType> types1 = JAXRSUtils.getProviderConsumeTypes(e1);
+        public static int sortMediaTypes(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
+            List<MediaType> types1 = JAXRSUtils.getProviderConsumeTypes(p1.getProvider());
             types1 = JAXRSUtils.sortMediaTypes(types1, null);
-            List<MediaType> types2 = JAXRSUtils.getProviderConsumeTypes(e2);
+
+            List<MediaType> types2 = JAXRSUtils.getProviderConsumeTypes(p2.getProvider());
             types2 = JAXRSUtils.sortMediaTypes(types2, null);
 
-            int result = JAXRSUtils.compareSortedMediaTypes(types1, types2, null);
-            if (result != 0) {
-                return result;
-            }
-            result = compareClasses(e1, e2);
-            if (result != 0) {
-                return result;
-            }
-            result = compareCustomStatus(p1, p2);
-            if (result != 0) {
-                return result;
-            }
-            return comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
+            return JAXRSUtils.compareSortedMediaTypes(types1, types2, null);
         }
     }
 
-    private static class MessageBodyWriterComparator
-        implements Comparator<ProviderInfo<MessageBodyWriter<?>>> {
+    private static class MessageBodyWriterComparator {
 
-        public int compare(ProviderInfo<MessageBodyWriter<?>> p1,
-                           ProviderInfo<MessageBodyWriter<?>> p2) {
-            MessageBodyWriter<?> e1 = p1.getProvider();
-            MessageBodyWriter<?> e2 = p2.getProvider();
-
-            List<MediaType> types1 =
-                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(e1), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
-            List<MediaType> types2 =
-                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(e2), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
-
-            int result = JAXRSUtils.compareSortedMediaTypes(types1, types2, JAXRSUtils.MEDIA_TYPE_QS_PARAM);
-            if (result != 0) {
-                return result;
-            }
-
-            result = compareClasses(e1, e2);
-            if (result != 0) {
-                return result;
-            }
-
-            result = compareCustomStatus(p1, p2);
-            if (result != 0) {
-                return result;
-            }
-
+        public static int sortPriorityAnnotation(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
             return comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
+        }
+
+        public static int sortCustomProviders(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
+            int result;
+            result = compareCustomStatus(p1, p2);
+            return result;
+        }
+
+        public static int sortClasses(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
+            int result;
+            result = compareClasses(p1.getProvider(), p2.getProvider());
+            return result;
+        }
+
+        public static int sortProduceTypes(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
+            List<MediaType> types1 =
+                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(p1.getProvider()), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
+            List<MediaType> types2 =
+                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(p2.getProvider()), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
+
+            int result;
+            result = JAXRSUtils.compareSortedMediaTypes(types1, types2, JAXRSUtils.MEDIA_TYPE_QS_PARAM);
+            return result;
         }
     }
 
@@ -1143,7 +1142,7 @@ public abstract class ProviderFactory {
         return -1;
     }
 
-    private static Type[] getGenericInterfaces(Class<?> cls, Class<?> expectedClass) {
+    public static Type[] getGenericInterfaces(Class<?> cls, Class<?> expectedClass) {
         return getGenericInterfaces(cls, expectedClass, Object.class);
     }
     private static Type[] getGenericInterfaces(Class<?> cls, Class<?> expectedClass,
