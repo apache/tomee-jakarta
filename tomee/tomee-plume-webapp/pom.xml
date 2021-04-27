@@ -483,6 +483,8 @@
               <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
             </resources>
           </replace>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
         <executions>
           <execution>
