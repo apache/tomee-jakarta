@@ -154,10 +154,6 @@ public abstract class ProviderFactory {
         new LazyProviderClass(JAXB_PROVIDER_NAME);
     private static final LazyProviderClass JAXB_ELEMENT_PROVIDER_CLASS =
         new LazyProviderClass("org.apache.cxf.jaxrs.provider.JAXBElementTypedProvider");
-    private static final LazyProviderClass JSONB_PROVIDER_CLASS =
-        new LazyProviderClass("org.apache.openejb.server.cxf.rs.johnzon.TomEEJsonbProvider");
-    private static final LazyProviderClass JSONP_PROVIDER_CLASS =
-        new LazyProviderClass("org.apache.openejb.server.cxf.rs.johnzon.TomEEJsonpProvider");
     private static final LazyProviderClass MULTIPART_PROVIDER_CLASS =
         new LazyProviderClass("org.apache.cxf.jaxrs.provider.MultipartProvider");
 
@@ -218,8 +214,6 @@ public abstract class ProviderFactory {
                      new PrimitiveTextProvider<Object>(),
                      JAXB_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
                      JAXB_ELEMENT_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
-                     JSONP_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
-                     JSONB_PROVIDER_CLASS.tryCreateInstance(factory.getBus()),
                      MULTIPART_PROVIDER_CLASS.tryCreateInstance(factory.getBus()));
         Object prop = factory.getBus().getProperty("skip.default.json.provider.registration");
         if (!PropertyUtils.isTrue(prop)) {
@@ -735,17 +729,18 @@ public abstract class ProviderFactory {
      * x/y;q=1.0 < x/y;q=0.7.
      */
     private void sortReaders() {
-        messageReaders.sort(MessageBodyReaderComparator::sortPriorityAnnotation);
-        messageReaders.sort(MessageBodyReaderComparator::sortCustomProviders);
-        messageReaders.sort(MessageBodyReaderComparator::sortMediaTypes);
-        messageReaders.sort(MessageBodyReaderComparator::sortClasses);
+        if (!customComparatorAvailable(MessageBodyReader.class)) {
+            messageReaders.sort(new MessageBodyReaderComparator());
+        } else {
+            doCustomSort(messageReaders);
+        }
     }
-    
     private <T> void sortWriters() {
-        messageWriters.sort(MessageBodyWriterComparator::sortPriorityAnnotation);
-        messageWriters.sort(MessageBodyWriterComparator::sortCustomProviders);
-        messageWriters.sort(MessageBodyWriterComparator::sortProduceTypes);
-        messageWriters.sort(MessageBodyWriterComparator::sortClasses);
+        if (!customComparatorAvailable(MessageBodyWriter.class)) {
+            messageWriters.sort(new MessageBodyWriterComparator());
+        } else {
+            doCustomSort(messageWriters);
+        }
     }
 
     private boolean customComparatorAvailable(Class<?> providerClass) {
@@ -858,64 +853,85 @@ public abstract class ProviderFactory {
         setProviders(true, false, userProviders.toArray());
     }
 
-    private static class MessageBodyReaderComparator {
+    static class MessageBodyReaderComparator
+        implements Comparator<ProviderInfo<MessageBodyReader<?>>> {
 
-        public static int sortPriorityAnnotation(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
-            return comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
-        }
+        private final GenericArgumentComparator classComparator =
+                new GenericArgumentComparator(MessageBodyReader.class);
 
-        public static int sortCustomProviders(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
-            int result;
-            result = compareCustomStatus(p1, p2);
-            return result;
-        }
-
-        public static int sortClasses(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
+        public int compare(ProviderInfo<MessageBodyReader<?>> p1,
+                           ProviderInfo<MessageBodyReader<?>> p2) {
             MessageBodyReader<?> e1 = p1.getProvider();
             MessageBodyReader<?> e2 = p2.getProvider();
-            int result;
-            result = compareClasses(e1, e2);
-            return result;
-        }
 
-        public static int sortMediaTypes(final ProviderInfo<MessageBodyReader<?>> p1, final ProviderInfo<MessageBodyReader<?>> p2) {
-            List<MediaType> types1 = JAXRSUtils.getProviderConsumeTypes(p1.getProvider());
+            List<MediaType> types1 = JAXRSUtils.getProviderConsumeTypes(e1);
             types1 = JAXRSUtils.sortMediaTypes(types1, null);
-
-            List<MediaType> types2 = JAXRSUtils.getProviderConsumeTypes(p2.getProvider());
+            List<MediaType> types2 = JAXRSUtils.getProviderConsumeTypes(e2);
             types2 = JAXRSUtils.sortMediaTypes(types2, null);
 
-            return JAXRSUtils.compareSortedMediaTypes(types1, types2, null);
+            int result = JAXRSUtils.compareSortedMediaTypes(types1, types2, null);
+            if (result != 0) {
+                return result;
+            }
+
+            final Class<?> class1 = ClassHelper.getRealClass(e1);
+            final Class<?> class2 = ClassHelper.getRealClass(e2);
+            result = classComparator.compare(class1, class2);
+            if (result != 0) {
+                return result;
+            }
+            result = compareCustomStatus(p1, p2);
+            if (result != 0) {
+                return result;
+            }
+
+            result = comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
+            if (result != 0) {
+                return result;
+            }
+
+            return p1.getProvider().getClass().getName().compareTo(p2.getProvider().getClass().getName());
         }
     }
 
-    private static class MessageBodyWriterComparator {
+    static class MessageBodyWriterComparator
+        implements Comparator<ProviderInfo<MessageBodyWriter<?>>> {
 
-        public static int sortPriorityAnnotation(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
-            return comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
-        }
+        private final GenericArgumentComparator classComparator =
+                new GenericArgumentComparator(MessageBodyWriter.class);
 
-        public static int sortCustomProviders(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
-            int result;
-            result = compareCustomStatus(p1, p2);
-            return result;
-        }
+        public int compare(ProviderInfo<MessageBodyWriter<?>> p1,
+                           ProviderInfo<MessageBodyWriter<?>> p2) {
+            MessageBodyWriter<?> e1 = p1.getProvider();
+            MessageBodyWriter<?> e2 = p2.getProvider();
 
-        public static int sortClasses(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
-            int result;
-            result = compareClasses(p1.getProvider(), p2.getProvider());
-            return result;
-        }
-
-        public static int sortProduceTypes(final ProviderInfo<MessageBodyWriter<?>> p1, final ProviderInfo<MessageBodyWriter<?>> p2) {
+            final Class<?> class1 = ClassHelper.getRealClass(e1);
+            final Class<?> class2 = ClassHelper.getRealClass(e2);
+            int result = classComparator.compare(class1, class2);
+            if (result != 0) {
+                return result;
+            }
             List<MediaType> types1 =
-                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(p1.getProvider()), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
+                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(e1), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
             List<MediaType> types2 =
-                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(p2.getProvider()), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
+                JAXRSUtils.sortMediaTypes(JAXRSUtils.getProviderProduceTypes(e2), JAXRSUtils.MEDIA_TYPE_QS_PARAM);
 
-            int result;
             result = JAXRSUtils.compareSortedMediaTypes(types1, types2, JAXRSUtils.MEDIA_TYPE_QS_PARAM);
-            return result;
+            if (result != 0) {
+                return result;
+            }
+
+            result = compareCustomStatus(p1, p2);
+            if (result != 0) {
+                return result;
+            }
+
+            result = comparePriorityStatus(p1.getProvider().getClass(), p2.getProvider().getClass());
+            if (result != 0) {
+                return result;
+            }
+
+            return p1.getProvider().getClass().getName().compareTo(p2.getProvider().getClass().getName());
         }
     }
 
@@ -1138,11 +1154,16 @@ public abstract class ProviderFactory {
         if (realClass1.isAssignableFrom(realClass2)) {
             // subclass should go first
             return 1;
+        } else if (realClass2.isAssignableFrom(realClass1)) {
+            // superclass should go last
+            return -1;
         }
-        return -1;
+
+        // there is no relation between the types returned by the providers
+        return 0;
     }
 
-    public static Type[] getGenericInterfaces(Class<?> cls, Class<?> expectedClass) {
+    private static Type[] getGenericInterfaces(Class<?> cls, Class<?> expectedClass) {
         return getGenericInterfaces(cls, expectedClass, Object.class);
     }
     private static Type[] getGenericInterfaces(Class<?> cls, Class<?> expectedClass,
