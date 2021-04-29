@@ -631,6 +631,9 @@ public final class JAXRSUtils {
     }
 
     private static boolean matchHttpMethod(String expectedMethod, String httpMethod) {
+        if ("*".equals(httpMethod)) {
+            return true;
+        }
         return expectedMethod.equalsIgnoreCase(httpMethod)
             || headMethodPossible(expectedMethod, httpMethod)
             || expectedMethod.equals(DefaultMethod.class.getSimpleName());
