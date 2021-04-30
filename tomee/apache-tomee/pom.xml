@@ -731,6 +731,8 @@
                 <jars>
                   <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
                   <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
+                  <yoko-rmi-spec-1.4.jar>org.apache.yoko:yoko-rmi-spec:jar:1.4</yoko-rmi-spec-1.4.jar>
+                  <yoko-spec-corba-1.4.jar>org.apache.yoko:yoko-spec-corba:jar:1.4</yoko-spec-corba-1.4.jar>
                 </jars>
               </replace>
             </configuration>
