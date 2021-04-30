@@ -469,9 +469,7 @@
             <source>${project.basedir}/../../transform/src/patch/java/</source>
 <!--            <source>${project.basedir}/src/patch/java/</source>-->
           </patchSources>
-<!--          <sourceExcludes>-->
-<!--            <exclude>org/apache/cxf/jaxrs</exclude>-->
-<!--          </sourceExcludes>-->
+          <transformSources>true</transformSources>
           <replace>
             <!-- We don't want these bytecode modified at all, so we overwrite
             any modifications made by the Eclipse Transformer with the originals -->
