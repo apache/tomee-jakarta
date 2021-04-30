@@ -467,8 +467,14 @@
           <select>tomee-plume-webapp-transformed-.*\.war</select>
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
-<!--            <source>${project.basedir}/src/patch/java/</source>-->
           </patchSources>
+          <patchResources>
+            <source>${project.basedir}/../../transform/src/patch/resources/</source>
+          </patchResources>
+          <sourceExcludes>
+<!--            <exclude>org/apache/cxf/jaxrs</exclude>-->
+            <exclude>org/apache/bval</exclude>
+          </sourceExcludes>
           <transformSources>true</transformSources>
           <replace>
             <!-- We don't want these bytecode modified at all, so we overwrite
@@ -481,6 +487,11 @@
               <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
             </resources>
           </replace>
+          <add>
+            <resources>
+              <bval-jsr-2.0.5.jar>META-INF/validation-.*.xsd</bval-jsr-2.0.5.jar>
+            </resources>
+          </add>
           <source>1.8</source>
           <target>1.8</target>
         </configuration>
