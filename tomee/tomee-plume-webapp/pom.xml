@@ -483,9 +483,6 @@
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
-          <patchResources>
-            <source>${project.basedir}/../../transform/src/patch/resources/</source>
-          </patchResources>
           <sourceExcludes>
 <!--            <exclude>org/apache/cxf/jaxrs</exclude>-->
             <exclude>org/apache/bval</exclude>
