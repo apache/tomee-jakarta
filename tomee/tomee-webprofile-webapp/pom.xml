@@ -178,7 +178,7 @@
             <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
           <sourceExcludes>
-<!--            <exclude>org/apache/cxf</exclude>-->
+            <exclude>org/apache/cxf/jaxb</exclude>
           </sourceExcludes>
           <transformSources>true</transformSources>
           <replace>
