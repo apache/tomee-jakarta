@@ -505,7 +505,7 @@
             <!-- We don't want these bytecode modified at all, so we overwrite
             any modifications made by the Eclipse Transformer with the originals -->
             <jars>
-              <hibernate-validator-7.0.0.Final.jar>org.hibernate.validator:hibernate-validator:7.0.0.Final</hibernate-validator-7.0.0.Final.jar>
+              <hibernate-validator-7.0.0.Final.jar>org.hibernate.validator:hibernate-validator:jar:7.0.0.Final</hibernate-validator-7.0.0.Final.jar>
               <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
               <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
             </jars>
