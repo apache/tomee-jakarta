@@ -220,7 +220,7 @@
         </exclusion>
         <exclusion>
           <groupId>org.apache.bval</groupId>
-          <artifactId>*</artifactId>
+          <artifactId>bval-jsr</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -392,6 +392,17 @@
       <artifactId>xml-apis</artifactId>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.tomee</groupId>
+      <artifactId>openejb-core</artifactId>
+      <version>${tomee.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.bval</groupId>
+          <artifactId>bval-jsr</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
 
   <build>
@@ -409,10 +420,12 @@
         <version>3.1.0</version>
         <configuration>
           <dependentWarExcludes>
-            %regex[(WEB-INF/)?lib/(tomee-)?myfaces(-api|-impl)?-.*.jar],%regex[(WEB-INF/)?lib/bval?-.*.jar],
+            %regex[(WEB-INF/)?lib/bval-jsr-.*.jar],
+            %regex[(WEB-INF/)?lib/(tomee-)?myfaces(-api|-impl)?-.*.jar],
           </dependentWarExcludes>
           <packagingExcludes>
-            %regex[(WEB-INF/)?lib/(tomee-)?myfaces(-api|-impl)?-.*.jar],%regex[(WEB-INF/)?lib/bval?-.*.jar],
+            %regex[(WEB-INF/)?lib/bval-jsr-.*.jar],
+            %regex[(WEB-INF/)?lib/(tomee-)?myfaces(-api|-impl)?-.*.jar],
           </packagingExcludes>
         </configuration>
       </plugin>
@@ -498,7 +511,7 @@
             <!-- We don't want these bytecode modified at all, so we overwrite
             any modifications made by the Eclipse Transformer with the originals -->
             <jars>
-              <hibernate-validator-7.0.0.Final.jar>org.hibernate.validator:hibernate-validator:6.0.2.Final</hibernate-validator-7.0.0.Final.jar>
+              <hibernate-validator-7.0.0.Final.jar>org.hibernate.validator:hibernate-validator:7.0.0.Final</hibernate-validator-7.0.0.Final.jar>
               <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
               <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
             </jars>
