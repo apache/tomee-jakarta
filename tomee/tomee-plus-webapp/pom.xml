@@ -500,6 +500,7 @@
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
+          <transformSources>true</transformSources>
           <replace>
             <resources>
               <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>

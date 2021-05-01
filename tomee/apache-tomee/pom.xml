@@ -735,6 +735,7 @@
                   <yoko-spec-corba-1.4.jar>org.apache.yoko:yoko-spec-corba:jar:1.4</yoko-spec-corba-1.4.jar>
                 </jars>
               </replace>
+              <transformSources>true</transformSources>
             </configuration>
             <executions>
               <execution>
