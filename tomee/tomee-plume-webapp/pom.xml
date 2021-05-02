@@ -415,6 +415,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.0.0</version>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -515,7 +521,7 @@
             <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
           <sourceExcludes>
-<!--            <exclude>org/apache/cxf/jaxrs</exclude>-->
+            <!--            <exclude>org/apache/cxf/jaxrs</exclude>-->
             <exclude>org/apache/bval</exclude>
           </sourceExcludes>
           <transformSources>true</transformSources>
