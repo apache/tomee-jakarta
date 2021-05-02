@@ -122,6 +122,12 @@
       <type>war</type>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-web-api</artifactId>
+      <version>9.1.0-RC1</version>
+      <scope>provided</scope>
+    </dependency>
 
     <!-- needed for EJBContainer impl so scope compile -->
     <dependency>
@@ -558,6 +564,7 @@
                 <jars>
                   <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
                   <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
+                  <javaee-api-8.0-5-tomcat.jar>jakarta.platform:jakarta.jakartaee-web-api:jar:9.1.0-RC1</javaee-api-8.0-5-tomcat.jar>
                 </jars>
               </replace>
             </configuration>
