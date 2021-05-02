@@ -527,17 +527,17 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jpa_2.2_spec</artifactId>
-      <version>${geronimo-jpa_2.2_spec.version}</version>
-      <classifier>sources</classifier>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jpa_2.2_spec</artifactId>
-      <version>${geronimo-jpa_2.2_spec.version}</version>
-      <optional>false</optional>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.0.0</version>
+      <classifier>sources</classifier>
+      <optional>true</optional>
     </dependency>
 
     <dependency>
