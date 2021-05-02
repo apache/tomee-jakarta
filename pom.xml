@@ -129,6 +129,7 @@
   </properties>
 
   <modules>
+    <module>jakartaee-api</module>
     <module>boms</module>
     <module>tomee</module>
     <module>transform</module>
