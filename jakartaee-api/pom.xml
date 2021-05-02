@@ -461,16 +461,16 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jaxrs_2.1_spec</artifactId>
-      <version>${geronimo-jaxrs_2.1_spec.version}</version>
-      <classifier>sources</classifier>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-jaxrs_2.1_spec</artifactId>
-      <version>${geronimo-jaxrs_2.1_spec.version}</version>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>3.0.0</version>
+      <classifier>sources</classifier>
       <optional>true</optional>
     </dependency>
 
