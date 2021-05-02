@@ -583,16 +583,16 @@
     </dependency>
 
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-validation_2.0_spec</artifactId>
-      <version>${geronimo-validation_2.0_spec.version}</version>
-      <classifier>sources</classifier>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>3.0.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.specs</groupId>
-      <artifactId>geronimo-validation_2.0_spec</artifactId>
-      <version>${geronimo-validation_2.0_spec.version}</version>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>3.0.0</version>
+      <classifier>sources</classifier>
       <optional>true</optional>
     </dependency>
 
