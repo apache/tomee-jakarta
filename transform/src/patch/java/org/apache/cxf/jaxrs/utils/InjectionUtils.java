@@ -53,20 +53,20 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.MultivaluedMap;
-import javax.ws.rs.core.PathSegment;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.ext.ContextResolver;
-import javax.ws.rs.ext.ParamConverter;
-import javax.ws.rs.ext.Providers;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.GenericEntity;
+import jakarta.ws.rs.core.HttpHeaders;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.MultivaluedMap;
+import jakarta.ws.rs.core.PathSegment;
+import jakarta.ws.rs.core.Request;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.core.UriInfo;
+import jakarta.ws.rs.ext.ContextResolver;
+import jakarta.ws.rs.ext.ParamConverter;
+import jakarta.ws.rs.ext.Providers;
 
 import org.apache.cxf.common.classloader.ClassLoaderUtils;
 import org.apache.cxf.common.i18n.BundleUtils;
@@ -537,15 +537,19 @@ public final class InjectionUtils {
     }
 
     private static RuntimeException createParamConversionException(ParameterType pType, Exception ex) {
-        //
-        //  For path, query & matrix parameters this is 404,
-        //  for others 400...
-        //
-        if (pType == ParameterType.PATH || pType == ParameterType.QUERY
-            || pType == ParameterType.MATRIX) {
-            return ExceptionUtils.toNotFoundException(ex, null);
-        }
-        return ExceptionUtils.toBadRequestException(ex, null);
+        /*
+         * Loosely related to the following section of the Jakarta REST specification:
+         *
+         * At least one of the acceptable response entity body media types is a supported output data
+         * format (see Section 3.5). If no methods support one of the acceptable response entity body
+         * media types an implementation MUST generate a NotAcceptableException (406 status)
+         * and no entity.
+         *
+         * Tested by:
+         * com.sun.ts.tests.jaxrs.ee.rs.ext.paramconverter.JAXRSClient
+         * atomicIntegerIsLazyDeployableAndThrowsErrorTest_from_standalone
+         */
+        return ExceptionUtils.toNotAcceptableException(ex, null);
     }
     
     public static <T> Optional<ParamConverter<T>> getParamConverter(Class<T> pClass,
