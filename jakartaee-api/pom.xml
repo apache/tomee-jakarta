@@ -22,11 +22,11 @@
   <parent>
     <artifactId>tomee-project</artifactId>
     <groupId>org.apache.tomee</groupId>
-    <version>9.0.0-M7-SNAPSHOT</version>
+    <version>9.0.0-M7</version>
   </parent>
 
   <artifactId>jakartaee-api</artifactId>
-  <version>9.1.0-SNAPSHOT</version>
+  <version>9.1.0</version>
   <packaging>jar</packaging>
 
   <name>TomEE :: Jakarta EE 9 Full API</name>
