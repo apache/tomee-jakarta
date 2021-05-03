@@ -550,6 +550,13 @@
           </add>
           <source>1.8</source>
           <target>1.8</target>
+          <dependencies>
+            <dependency>org.apache.tomcat:tomcat-servlet-api:jar:10.0.4</dependency>
+            <dependency>org.springframework:spring-core:jar:5.3.6</dependency>
+            <dependency>org.springframework:spring-context:jar:5.3.6</dependency>
+            <dependency>org.springframework:spring-beans:jar:5.3.6</dependency>
+            <dependency>org.springframework:spring-webmvc:jar:5.3.6</dependency>
+          </dependencies>
         </configuration>
         <executions>
           <execution>
