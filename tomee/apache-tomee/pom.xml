@@ -133,12 +133,24 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-client</artifactId>
       <version>${tomee.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-core</artifactId>
       <version>${tomee.version}</version>
       <type>jar</type>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- needed to compile in intellij for tomcat patches -->
@@ -147,6 +159,12 @@
       <artifactId>tomcat-catalina</artifactId>
       <version>${tomcat.version}</version>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
   </dependencies>
 

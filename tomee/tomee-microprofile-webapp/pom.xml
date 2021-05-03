@@ -81,6 +81,10 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -91,6 +95,10 @@
       <artifactId>openejb-cxf-rs</artifactId>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -103,6 +111,10 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -113,6 +125,10 @@
       <artifactId>openejb-cxf</artifactId>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -130,6 +146,10 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -141,6 +161,10 @@
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -154,6 +178,10 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -164,6 +192,10 @@
       <artifactId>openejb-rest</artifactId>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -176,6 +208,10 @@
       <version>${tomee.version}</version>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -185,6 +221,10 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-webservices</artifactId>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -198,6 +238,10 @@
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -215,6 +259,10 @@
       <scope>compile</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -231,6 +279,10 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
@@ -242,6 +294,10 @@
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -264,6 +320,10 @@
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -288,6 +348,10 @@
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>

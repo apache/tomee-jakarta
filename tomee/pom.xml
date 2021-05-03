@@ -67,6 +67,10 @@
           <version>${tomee.version}</version>
           <exclusions>
             <exclusion>
+              <groupId>org.apache.tomee.bom</groupId>
+              <artifactId>jaxb-runtime</artifactId>
+            </exclusion>
+            <exclusion>
               <groupId>${project.groupId}</groupId>
               <artifactId>javaee-api</artifactId>
             </exclusion>
