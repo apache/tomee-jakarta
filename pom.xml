@@ -32,7 +32,7 @@
   <groupId>org.apache.tomee</groupId>
   <artifactId>tomee-project</artifactId>
   <packaging>pom</packaging>
-  <version>9.0.0-M7-SNAPSHOT</version>
+  <version>9.0.0-M8-SNAPSHOT</version>
 
   <name>TomEE :: TomEE :: Apache TomEE 9</name>
   <description>Jakarta EE 9 version of Apache TomEE</description>

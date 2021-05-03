@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache.tomee</groupId>
     <artifactId>tomee</artifactId>
-    <version>9.0.0-M7-SNAPSHOT</version>
+    <version>9.0.0-M8-SNAPSHOT</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -83,7 +83,7 @@
     <dependency>
       <groupId>org.apache.tomee</groupId>
       <artifactId>jakartaee-api</artifactId>
-      <version>9.1.0-SNAPSHOT</version>
+      <version>9.1.1-SNAPSHOT</version>
       <classifier>tomcat</classifier>
     </dependency>
     <dependency>
@@ -572,10 +572,10 @@
             <configuration>
               <target>
                 <tstamp>
-                  <format property="TSTAMP" pattern="hh:mm"/>
+                  <format property="TSTAMP" pattern="hh:mm" />
                 </tstamp>
-                <replace file="target/classes/openejb-version.properties" token="@DATE-REPLACED-BY-MAVEN@" value="${DSTAMP}"/>
-                <replace file="target/classes/openejb-version.properties" token="@TIME-REPLACED-BY-MAVEN@" value="${TSTAMP}"/>
+                <replace file="target/classes/openejb-version.properties" token="@DATE-REPLACED-BY-MAVEN@" value="${DSTAMP}" />
+                <replace file="target/classes/openejb-version.properties" token="@TIME-REPLACED-BY-MAVEN@" value="${TSTAMP}" />
               </target>
             </configuration>
           </execution>
