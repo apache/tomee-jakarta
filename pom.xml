@@ -130,18 +130,12 @@
 
   <modules>
     <module>jakartaee-api</module>
-    <module>boms</module>
     <module>tomee</module>
     <module>transform</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.apache.tomee.bom</groupId>
-        <artifactId>jaxb-runtime</artifactId>
-        <version>${tomee.version}</version>
-      </dependency>
       <dependency>
         <groupId>${project.groupId}</groupId>
         <artifactId>javaee-api</artifactId>
@@ -1332,6 +1326,10 @@
   </build>
 
   <pluginRepositories>
+    <pluginRepository>
+      <id>staging-tomee-patch-plugin</id>
+      <url>https://repository.apache.org/content/repositories/orgapachetomee-1183</url>
+    </pluginRepository>
     <pluginRepository>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>

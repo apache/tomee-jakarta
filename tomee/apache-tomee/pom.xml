@@ -311,10 +311,25 @@
                 <version>${version.javaee-api}</version>
               </dependency>
               <dependency>
-                <groupId>org.apache.tomee.bom</groupId>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>2.3.2</version>
+              </dependency>
+              <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
                 <artifactId>jaxb-runtime</artifactId>
-                <version>${tomee.version}</version>
-                <type>pom</type>
+                <version>2.3.2</version>
+                <exclusions>
+                  <exclusion> <!-- Is already included in java-ee-api -->
+                    <artifactId>jakarta.activation</artifactId>
+                    <groupId>jakarta.activation-api</groupId>
+                  </exclusion>
+                </exclusions>
+              </dependency>
+              <dependency>
+                <groupId>com.sun.activation</groupId>
+                <artifactId>jakarta.activation</artifactId>
+                <version>1.2.1</version>
               </dependency>
               <dependency>
                 <groupId>${project.groupId}</groupId>
@@ -547,7 +562,7 @@
           <plugin>
             <groupId>org.apache.tomee.patch</groupId>
             <artifactId>tomee-patch-plugin</artifactId>
-            <version>0.4</version>
+            <version>0.5</version>
             <configuration>
               <select>apache-tomee-(plus|plume|webprofile|microprofile).*\.zip</select>
               <skipTransform>true</skipTransform>
@@ -720,7 +735,7 @@
           <plugin>
             <groupId>org.apache.tomee.patch</groupId>
             <artifactId>tomee-patch-plugin</artifactId>
-            <version>0.4</version>
+            <version>0.5</version>
             <configuration>
               <select>apache-tomee-(plus|plume|webprofile|microprofile).*\.zip</select>
               <skipTransform>true</skipTransform>

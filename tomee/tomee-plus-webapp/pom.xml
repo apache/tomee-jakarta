@@ -35,7 +35,27 @@
     <tomee.build.name>${project.groupId}.tomee.plus.webapp</tomee.build.name>
   </properties>
   <dependencies>
-
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>2.3.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>2.3.2</version>
+      <exclusions>
+        <exclusion> <!-- Is already included in java-ee-api -->
+          <artifactId>jakarta.activation</artifactId>
+          <groupId>jakarta.activation-api</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>jakarta.activation</artifactId>
+      <version>1.2.1</version>
+    </dependency>
     <dependency><!-- needed by myfaces -->
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
@@ -494,7 +514,7 @@
       <plugin>
         <groupId>org.apache.tomee.patch</groupId>
         <artifactId>tomee-patch-plugin</artifactId>
-        <version>0.4</version>
+        <version>0.5</version>
         <configuration>
           <select>tomee-plus-webapp-transformed-.*\.war</select>
           <patchSources>
