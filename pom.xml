@@ -114,7 +114,7 @@
     <slf4j.version>1.7.21</slf4j.version>
     <tomcat.version>10.0.4</tomcat.version>
     <tomee.build.name>${project.groupId}.tomee.tomee</tomee.build.name>
-    <tomee.version>8.0.7-SNAPSHOT</tomee.version>
+    <tomee.version>8.0.7</tomee.version>
     <version.eclipselink>3.0.0</version.eclipselink>
     <version.groovy>2.4.12</version.groovy>
     <version.hsqldb>2.3.2</version.hsqldb>
