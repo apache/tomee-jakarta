@@ -103,7 +103,7 @@
     <jackson.dataformat.version>2.12.1</jackson.dataformat.version>
     <jackson.version>2.12.1</jackson.version>
     <jcs.version>2.1</jcs.version>
-    <johnzon.version>1.2.10</johnzon.version>
+    <johnzon.version>1.2.11</johnzon.version>
     <junit.version>4.13.1</junit.version>
     <mojarra.version>3.0.0</mojarra.version>
     <myfaces.version>3.0.0</myfaces.version>
