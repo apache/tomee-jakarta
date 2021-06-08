@@ -556,6 +556,12 @@
           </patchSources>
           <transformSources>true</transformSources>
           <replace>
+            <!-- We don't want these bytecode modified at all, so we overwrite
+            any modifications made by the Eclipse Transformer with the originals -->
+            <jars>
+              <myfaces-api-3.0.0.jar>org.apache.myfaces.core:myfaces-api:jar:3.0.0</myfaces-api-3.0.0.jar>
+              <myfaces-impl-3.0.0.jar>org.apache.myfaces.core:myfaces-impl:jar:3.0.0</myfaces-impl-3.0.0.jar>
+            </jars>
             <resources>
               <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
             </resources>

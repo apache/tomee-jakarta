@@ -80,7 +80,7 @@
   </mailingLists>
 
   <properties>
-    <batchee.version>0.6</batchee.version>
+    <batchee.version>1.0.0</batchee.version>
     <bval.version>2.0.5</bval.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-cli.version>1.4</commons-cli.version>
@@ -103,10 +103,10 @@
     <jackson.dataformat.version>2.12.1</jackson.dataformat.version>
     <jackson.version>2.12.1</jackson.version>
     <jcs.version>2.1</jcs.version>
-    <johnzon.version>1.2.10</johnzon.version>
+    <johnzon.version>1.2.11</johnzon.version>
     <junit.version>4.13.1</junit.version>
     <mojarra.version>3.0.0</mojarra.version>
-    <myfaces.version>2.3.8</myfaces.version>
+    <myfaces.version>3.0.0</myfaces.version>
     <openjpa.version>3.1.2</openjpa.version>
     <openwebbeans.version>2.0.22</openwebbeans.version>
     <org.apache.activemq.version>5.16.1</org.apache.activemq.version>

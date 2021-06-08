@@ -591,6 +591,8 @@
                 <jars>
                   <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
                   <eclipselink-3.0.0.jar>org.eclipse.persistence:eclipselink:jar:3.0.0</eclipselink-3.0.0.jar>
+                  <myfaces-api-3.0.0.jar>org.apache.myfaces.core:myfaces-api:jar:3.0.0</myfaces-api-3.0.0.jar>
+                  <myfaces-impl-3.0.0.jar>org.apache.myfaces.core:myfaces-impl:jar:3.0.0</myfaces-impl-3.0.0.jar>
                 </jars>
               </replace>
             </configuration>
