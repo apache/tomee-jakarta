@@ -91,6 +91,15 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.ext.EntityResolver2;
 
+/**
+ * ***************************************************************************
+ * This has been accepted and merged recently on Tomcat master for Tomcat 10.x
+ * We should soon be able to drop this
+ * ***************************************************************************
+ */
+
+
+
 
 /**
  * <p>The default resource-serving servlet for most web applications,
