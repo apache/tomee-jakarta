@@ -1325,17 +1325,7 @@
     </pluginManagement>
   </build>
 
-  <repositories>
-    <repository>
-      <id>staging-tomee-patch-plugin</id>
-      <url>https://repository.apache.org/content/repositories/orgapachetomee-1182</url>
-    </repository>
-  </repositories>
   <pluginRepositories>
-    <pluginRepository>
-      <id>staging-tomee-patch-plugin</id>
-      <url>https://repository.apache.org/content/repositories/orgapachetomee-1183</url>
-    </pluginRepository>
     <pluginRepository>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
