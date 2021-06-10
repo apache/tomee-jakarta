@@ -411,7 +411,7 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>tomee-security</artifactId>
-      <version>${project.version}</version>
+      <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
