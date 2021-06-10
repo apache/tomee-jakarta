@@ -20,6 +20,7 @@
 <!-- $Rev: 600338 $ $Date: 2007-12-02 09:08:04 -0800 (Sun, 02 Dec 2007) $ -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <parent>
     <groupId>org.apache.tomee</groupId>
     <artifactId>tomee</artifactId>
@@ -56,6 +57,12 @@
       <artifactId>jakarta.activation</artifactId>
       <version>1.2.1</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.bval</groupId>
+      <artifactId>bval-jsr</artifactId>
+      <version>2.0.5</version>
+      <scope>provided</scope>
+    </dependency>
     <dependency><!-- needed by myfaces -->
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
@@ -64,12 +71,46 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>javaee-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>javaee-api</artifactId>
+      <classifier>tomcat</classifier>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomee</groupId>
+      <artifactId>jakartaee-api</artifactId>
+      <version>9.1.1-SNAPSHOT</version>
       <classifier>tomcat</classifier>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>mp-common</artifactId>
       <version>${tomee.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-rs-client</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-databinding-jaxb</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
@@ -90,7 +131,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-cxf-rs</artifactId>
-      <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -100,13 +140,32 @@
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-rs-client</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-databinding-jaxb</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-cxf-transport</artifactId>
-      <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -117,12 +176,31 @@
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-transports-http</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-rs-client</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.apache.cxf</groupId>
+          <artifactId>cxf-rt-databinding-jaxb</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-cxf</artifactId>
-      <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -190,7 +268,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-rest</artifactId>
-      <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -221,7 +298,6 @@
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>openejb-webservices</artifactId>
-      <version>${tomee.version}</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.tomee.bom</groupId>
@@ -272,6 +348,10 @@
           <groupId>org.apache.tomcat</groupId>
           <artifactId>tomcat-catalina</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.apache.bval</groupId>
+          <artifactId>bval-jsr</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
@@ -312,26 +392,26 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>tomee-mojarra</artifactId>
+      <artifactId>tomee-myfaces</artifactId>
       <version>${tomee.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>tomee-myfaces</artifactId>
+      <artifactId>tomee-security</artifactId>
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
-          <groupId>${project.groupId}</groupId>
-          <artifactId>javaee-api</artifactId>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>tomee-security</artifactId>
-      <version>${tomee.version}</version>
+      <version>${project.version}</version>
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
@@ -346,6 +426,10 @@
       <version>${tomee.version}</version>
       <scope>runtime</scope>
       <exclusions>
+        <exclusion>
+          <groupId>org.apache.tomee.bom</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
         <exclusion>
           <groupId>${project.groupId}</groupId>
           <artifactId>javaee-api</artifactId>
@@ -387,9 +471,9 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>org.apache.geronimo.javamail</groupId>
-      <artifactId>geronimo-javamail_1.6_mail</artifactId>
-      <scope>runtime</scope>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>jakarta.mail</artifactId>
+      <version>2.0.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.johnzon</groupId>
@@ -441,13 +525,17 @@
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-catalina</artifactId>
-      <version>${tomcat.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-coyote</artifactId>
       <version>${tomcat.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jasper</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -492,6 +580,44 @@
       <artifactId>easymock</artifactId>
       <version>3.2</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>jakarta.faces</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>7.0.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomee</groupId>
+      <artifactId>openejb-core</artifactId>
+      <version>${tomee.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.bval</groupId>
+          <artifactId>bval-jsr</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>jakarta.validation</groupId>
+      <artifactId>jakarta.validation-api</artifactId>
+      <version>3.0.0</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -576,34 +702,29 @@
           <patchSources>
             <source>${project.basedir}/../../transform/src/patch/java/</source>
           </patchSources>
+          <sourceExcludes>
+            <!--            <exclude>org/apache/cxf/jaxrs</exclude>-->
+            <exclude>org/apache/bval</exclude>
+          </sourceExcludes>
           <transformSources>true</transformSources>
           <replace>
             <!-- We don't want these bytecode modified at all, so we overwrite
           any modifications made by the Eclipse Transformer with the originals -->
             <jars>
-              <myfaces-api-3.0.0.jar>org.apache.myfaces.core:myfaces-api:jar:3.0.0</myfaces-api-3.0.0.jar>
-              <myfaces-impl-3.0.0.jar>org.apache.myfaces.core:myfaces-impl:jar:3.0.0</myfaces-impl-3.0.0.jar>
+              <hibernate-validator-7.0.0.Final.jar>org.hibernate.validator:hibernate-validator:jar:7.0.0.Final</hibernate-validator-7.0.0.Final.jar>
+              <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
             </jars>
             <resources>
               <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
             </resources>
           </replace>
+          <add>
+            <resources>
+              <bval-jsr-2.0.5.jar>META-INF/validation-.*.xsd</bval-jsr-2.0.5.jar>
+            </resources>
+          </add>
           <source>1.8</source>
           <target>1.8</target>
-          <dependencies>
-            <dependency>org.apache.aries.blueprint:blueprint-parser:jar:1.6.0</dependency>
-            <dependency>org.apache.aries.blueprint:org.apache.aries.blueprint.api:jar:1.0.1</dependency>
-            <dependency>org.apache.aries.blueprint:org.apache.aries.blueprint.core:jar:1.10.2</dependency>
-            <dependency>org.apache.tomcat:tomcat-servlet-api:jar:10.0.4</dependency>
-            <dependency>org.osgi:org.osgi.core:jar:6.0.0</dependency>
-            <dependency>org.osgi:osgi.cmpn:jar:6.0.0</dependency>
-            <dependency>org.ow2.asm:asm:jar:9.1</dependency>
-            <dependency>org.springframework:spring-aop:jar:5.3.6</dependency>
-            <dependency>org.springframework:spring-beans:jar:5.3.6</dependency>
-            <dependency>org.springframework:spring-context:jar:5.3.6</dependency>
-            <dependency>org.springframework:spring-core:jar:5.3.6</dependency>
-            <dependency>org.springframework:spring-webmvc:jar:5.3.6</dependency>
-          </dependencies>
         </configuration>
         <executions>
           <execution>
