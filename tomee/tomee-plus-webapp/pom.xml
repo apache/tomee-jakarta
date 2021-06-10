@@ -582,11 +582,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.glassfish</groupId>
-      <artifactId>jakarta.faces</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
       <version>7.0.0.Final</version>
@@ -709,10 +704,11 @@
           <transformSources>true</transformSources>
           <replace>
             <!-- We don't want these bytecode modified at all, so we overwrite
-          any modifications made by the Eclipse Transformer with the originals -->
+            any modifications made by the Eclipse Transformer with the originals -->
             <jars>
+              <myfaces-api-3.0.0.jar>org.apache.myfaces.core:myfaces-api:jar:3.0.0</myfaces-api-3.0.0.jar>
+              <myfaces-impl-3.0.0.jar>org.apache.myfaces.core:myfaces-impl:jar:3.0.0</myfaces-impl-3.0.0.jar>
               <hibernate-validator-7.0.0.Final.jar>org.hibernate.validator:hibernate-validator:jar:7.0.0.Final</hibernate-validator-7.0.0.Final.jar>
-              <jakarta.faces-3.0.0.jar>org.glassfish:jakarta.faces:jar:3.0.0</jakarta.faces-3.0.0.jar>
             </jars>
             <resources>
               <openejb-version.properties>${project.build.outputDirectory}/openejb-version.properties</openejb-version.properties>
