@@ -223,8 +223,7 @@ public abstract class AbstractMetaDataDefaults
         String name;
         boolean def;
         FieldMetaData fmd;
-        for (int i = 0; i < members.size(); i++) {
-            Member member = members.get(i);
+        for (Member member : members) {
             name = getFieldName(member);
             if (name == null || isReservedFieldName(name))
                 continue;
@@ -288,7 +287,7 @@ public abstract class AbstractMetaDataDefaults
     public static String getFieldName(Member member) {
         if (member instanceof Field)
             return member.getName();
-        if (member instanceof Method == false)
+        if (!(member instanceof Method))
         	return null;
         Method method = (Method) member;
         String name = method.getName();
@@ -352,8 +351,7 @@ public abstract class AbstractMetaDataDefaults
      */
     protected static boolean isUserDefined(Class<?> cls) {
         return cls != null && !cls.getName().startsWith("java.")
-            && !cls.getName().startsWith ("javax.")
-            && !cls.getName().startsWith ("jakarta.");
+            && !cls.getName().startsWith ("javax.");
 	}
 
     /**
