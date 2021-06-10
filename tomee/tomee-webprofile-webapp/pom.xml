@@ -198,7 +198,7 @@
             <dependency>org.apache.aries.blueprint:blueprint-parser:jar:1.6.0</dependency>
             <dependency>org.apache.aries.blueprint:org.apache.aries.blueprint.api:jar:1.0.1</dependency>
             <dependency>org.apache.aries.blueprint:org.apache.aries.blueprint.core:jar:1.10.2</dependency>
-            <dependency>org.apache.tomcat:tomcat-servlet-api:jar:10.0.4</dependency>
+            <dependency>org.apache.tomcat:tomcat-servlet-api:jar:10.0.6</dependency>
             <dependency>org.osgi:org.osgi.core:jar:6.0.0</dependency>
             <dependency>org.osgi:osgi.cmpn:jar:6.0.0</dependency>
             <dependency>org.ow2.asm:asm:jar:9.1</dependency>
