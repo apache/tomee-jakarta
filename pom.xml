@@ -105,7 +105,7 @@
     <junit.version>4.13.1</junit.version>
     <mojarra.version>3.0.0</mojarra.version>
     <myfaces.version>3.0.0</myfaces.version>
-    <openjpa.version>3.1.2</openjpa.version>
+    <openjpa.version>3.2.0</openjpa.version>
     <openwebbeans.version>2.0.23</openwebbeans.version>
     <org.apache.activemq.version>5.16.2</org.apache.activemq.version>
     <quartz-openejb-shade.version>2.2.4</quartz-openejb-shade.version>
