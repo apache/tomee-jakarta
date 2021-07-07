@@ -102,7 +102,7 @@
     <jackson.version>2.12.3</jackson.version>
     <jcs.version>2.1</jcs.version>
     <johnzon.version>1.2.14</johnzon.version>
-    <junit.version>4.13.1</junit.version>
+    <junit.version>4.13.2</junit.version>
     <mojarra.version>3.0.0</mojarra.version>
     <myfaces.version>3.0.0</myfaces.version>
     <openjpa.version>3.2.0</openjpa.version>
