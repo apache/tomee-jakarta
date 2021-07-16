@@ -115,7 +115,7 @@
     <tomee.version>8.0.8-SNAPSHOT</tomee.version>
     <version.eclipselink>3.0.0</version.eclipselink>
     <version.groovy>2.4.12</version.groovy>
-    <version.hsqldb>2.3.2</version.hsqldb>
+    <version.hsqldb>2.3.4</version.hsqldb>
     <version.javaee-api>8.0-5</version.javaee-api>
     <version.xalan>2.7.2</version.xalan>
     <xbeanVersion>4.14</xbeanVersion>
