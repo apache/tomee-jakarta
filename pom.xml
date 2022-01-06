@@ -81,38 +81,39 @@
     <batchee.version>1.0.0</batchee.version>
     <bval.version>2.0.5</bval.version>
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
-    <commons-cli.version>1.4</commons-cli.version>
+    <commons-cli.version>1.5.0</commons-cli.version>
     <commons-codec.version>1.15</commons-codec.version>
     <commons-collections.version>3.2.2</commons-collections.version>
     <commons-dbcp.version>2.9.0</commons-dbcp.version>
     <commons-discovery.version>0.5</commons-discovery.version>
     <commons-fileupload.version>1.4</commons-fileupload.version>
     <commons-io.version>2.11.0</commons-io.version>
-    <commons-lang3.version>3.11</commons-lang3.version>
+    <commons-lang3.version>3.12.0</commons-lang3.version>
     <commons-logging-api.version>1.1</commons-logging-api.version>
     <commons-logging.version>1.2</commons-logging.version>
-    <commons-net.version>3.7.2</commons-net.version>
+    <commons-net.version>3.8.0</commons-net.version>
     <commons-pool.version>2.11.1</commons-pool.version>
+    <commons-compress.version>1.21</commons-compress.version>
     <cxf.version>3.4.3</cxf.version>
     <geronimo-activation_1.1_spec.version>1.1</geronimo-activation_1.1_spec.version>
-    <geronimo-javamail_1.6_mail.version>1.0.0</geronimo-javamail_1.6_mail.version>
-    <geronimo-javamail_1.6_spec.version>1.0.0</geronimo-javamail_1.6_spec.version>
+    <geronimo-javamail_1.6_mail.version>1.0.1</geronimo-javamail_1.6_mail.version>
+    <geronimo-javamail_1.6_spec.version>1.0.1</geronimo-javamail_1.6_spec.version>
     <geronimo.connector.version>3.1.4</geronimo.connector.version>
-    <jackson.dataformat.version>2.12.3</jackson.dataformat.version>
-    <jackson.version>2.12.3</jackson.version>
+    <jackson.dataformat.version>2.13.1</jackson.dataformat.version>
+    <jackson.version>2.13.1</jackson.version>
     <jcs.version>2.1</jcs.version>
-    <johnzon.version>1.2.15-SNAPSHOT</johnzon.version>
+    <johnzon.version>1.2.15</johnzon.version>
     <junit.version>4.13.2</junit.version>
     <mojarra.version>3.0.0</mojarra.version>
-    <myfaces.version>3.0.1</myfaces.version>
+    <myfaces.version>3.0.0</myfaces.version>
     <openjpa.version>3.2.0</openjpa.version>
-    <openwebbeans.version>2.0.23</openwebbeans.version>
+    <openwebbeans.version>2.0.25</openwebbeans.version>
     <org.apache.activemq.version>5.16.3</org.apache.activemq.version>
     <quartz-openejb-shade.version>2.2.4</quartz-openejb-shade.version>
     <slf4j.version>1.7.21</slf4j.version>
-    <tomcat.version>10.0.11</tomcat.version>
+    <tomcat.version>10.0.14</tomcat.version>
     <tomee.build.name>${project.groupId}.tomee.tomee</tomee.build.name>
-    <tomee.version>8.0.9-SNAPSHOT</tomee.version>
+    <tomee.version>8.0.10-SNAPSHOT</tomee.version>
     <version.eclipselink>3.0.2</version.eclipselink>
     <version.groovy>2.4.12</version.groovy>
     <version.hsqldb>2.3.4</version.hsqldb>
@@ -1015,7 +1016,7 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-compress</artifactId>
-        <version>1.20</version>
+        <version>${commons-compress.version}</version>
       </dependency>
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
