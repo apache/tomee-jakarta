@@ -670,7 +670,6 @@
       <plugin>
         <groupId>org.apache.tomee.patch</groupId>
         <artifactId>tomee-patch-plugin</artifactId>
-        <version>0.6</version>
         <configuration>
           <select>tomee-plume-webapp-transformed-.*\.war</select>
           <patchSources>

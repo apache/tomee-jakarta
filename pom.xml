@@ -126,6 +126,8 @@
     <plus.work-dir>${project.build.directory}/plus-work-dir</plus.work-dir>
     <plume.work-dir>${project.build.directory}/plume-work-dir</plume.work-dir>
     <microprofile.work-dir>${project.build.directory}/microprofile-work-dir</microprofile.work-dir>
+    
+    <plugin.patch.version>0.8</plugin.patch.version>
   </properties>
 
   <modules>
@@ -1149,6 +1151,11 @@
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.tomee.patch</groupId>
+          <artifactId>tomee-patch-plugin</artifactId>
+          <version>${plugin.patch.version}</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>

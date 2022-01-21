@@ -171,7 +171,6 @@
       <plugin>
         <groupId>org.apache.tomee.patch</groupId>
         <artifactId>tomee-patch-plugin</artifactId>
-        <version>0.6</version>
         <configuration>
           <select>tomee-webprofile-webapp-transformed-.*\.war</select>
           <patchSources>
