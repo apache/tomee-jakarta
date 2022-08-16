@@ -101,7 +101,7 @@
     <geronimo-javamail_1.6_spec.version>1.0.1</geronimo-javamail_1.6_spec.version>
     <geronimo.connector.version>3.1.4</geronimo.connector.version>
     <jackson.dataformat.version>2.13.1</jackson.dataformat.version>
-    <jackson.version>2.13.1</jackson.version>
+    <jackson.version>2.13.2.1</jackson.version>
     <jcs.version>2.1</jcs.version>
     <johnzon.version>1.2.15</johnzon.version>
     <junit.version>4.13.2</junit.version>
